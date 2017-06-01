@@ -82,6 +82,17 @@ stroke-width:1px;
   -webkit-font-smoothing: antialiased;
 }
 
+.text-headingTitle{
+  font-family: TheSerif;
+  font-weight: 400;
+  /**font-size:12px;**/
+  font-size:1vw;
+  color:#0B1E2D;
+  word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-anchor: middle;
+  alignment-baseline: text-before-edge;
+}
 
 #toolbar{
     display: inline-block;
@@ -316,8 +327,8 @@ var newSwitches = headers.append("switch");
 
 newSwitches.append("text")
     .attr("class","text-headingTitle")
-                  //.attr('x', 5)
-                  //.attr('y', 20)
+                  .attr('x', 5)
+                  .attr('y', 20)
                   .attr('width', width-2*margin)
                   .attr('height', window.innerHeight/10)
     .text(function(d,i) { return d.Indicator});
