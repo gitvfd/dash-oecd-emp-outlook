@@ -322,14 +322,14 @@ stroke-width:1px;
 
 
         // If it fails, show our other labels instead.
-
         newSwitches.append("text")
             .attr("class","text-headingTitle")
             .attr('x', 5)
             .attr('y', 20)
             //.attr('width', width-2*margin)
             //.attr('height', window.innerHeight/10)
-            .text(function(d) { return (d.Indicator).substring(0, 25)});
+            .text(function(d) { return (d.Indicator).substring(0, 18)});//substring as text doesn't go to next line.
+
 
         headers.append("image")
             .attr('x', 0.98*(width-2*margin)-width/5)
