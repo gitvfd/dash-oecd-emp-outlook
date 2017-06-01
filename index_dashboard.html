@@ -316,8 +316,8 @@ stroke-width:1px;
                   .attr("requiredFeatures","http://www.w3.org/1999/xhtml")
 	                .append("xhtml:body")
                   .attr("xmlns","http://www.w3.org/1999/xhtml")
-                  .append("div")
-                  .append("tspan")
+                  .append("p")
+                  //.append("tspan")
                   .attr("class","headingTitle")
 	                .text(function(d) { return d.Indicator; });//'<div style=\"width:'+ width-2*margin+'\">'+d+'</div>');
 
@@ -326,8 +326,8 @@ stroke-width:1px;
 
         newSwitches.append("text")
             .attr("class","text-headingTitle")
-                          //.attr('x', 5)
-                          //.attr('y', 20)
+                          .attr('x', 5)
+                          .attr('y', 20)
                           .attr('width', width-2*margin)
                           .attr('height', window.innerHeight/10)
             .text(function(d,i) { return d.Indicator});
