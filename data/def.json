@@ -1,0 +1,68 @@
+[
+{
+   "Indicator": "Country",
+   "code":"cou",
+   "Sector": "",
+   "Definition": ""
+ },
+ {
+   "Indicator": "Employment rate",
+   "code":"Emp",
+   "Sector": "Quantity",
+   "Definition": "Share of working age population (15-64 years) in employment (%) (2015)"
+ },
+ {
+   "Indicator": "Full-time equivalent employment rate",
+   "code":"EmpFTI",
+   "Sector": "Quantity",
+   "Definition": "Share of working age population (15-64 years) in employment (%) (2015)"
+ },
+ {
+   "Indicator": "Unemployment rate",
+   "code":"Unemp",
+   "Sector": "Quantity",
+   "Definition": "Share of persons in the labour force (15-64 years) in unemployment (%) (2015)"
+ },
+ {
+   "Indicator": "Earnings quality",
+   "code":"EarnQual",
+   "Sector": "Quality",
+   "Definition": "Gross hourly earnings in USD adjusted for inequality (2013)"
+ },
+ {
+   "Indicator": "Labour market insecurity",
+   "code":"LabMarkSec",
+   "Sector": "Quality",
+   "Definition": "Expected monetary loss associated with becoming and staying unemployed as a share of previous earnings (2013)"
+ },
+ {
+   "Indicator": "Job strain",
+   "code":"JobStrain",
+   "Sector": "Quality",
+   "Definition": "Share of workers experiencing job strain (2015)"
+ },
+ {
+   "Indicator": "Very long-hours of work",
+   "code":"LongHours",
+   "Sector": "Quality",
+   "Definition": "% of workers usually working 60 or more hours in their main job (2015)"
+ },
+ {
+   "Indicator": "Low income rate",
+   "code":"LowIncome",
+   "Sector": "Inclusiveness",
+   "Definition": "Share of working age persons (18-65 years) living with less than 50% of median equivalised household disposable income (2013)"
+ },
+ {
+   "Indicator": "Gender income inequality",
+   "code":"GenderIneq",
+   "Sector": "Inclusiveness",
+   "Definition": "Difference between average annual earnings of men and women divided by average earnings of men (%) (2014)"
+ },
+ {
+   "Indicator": "Employment gap for disadvantaged groups",
+   "code":"EmplGap",
+   "Sector": "Inclusiveness",
+   "Definition": "Average employment gap as a percentage of the benchmark group (prime-age male workers) (2015)"
+ }
+]
