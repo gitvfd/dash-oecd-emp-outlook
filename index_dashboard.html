@@ -90,7 +90,7 @@ stroke-width:1px;
   color:#0B1E2D;
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
-  text-anchor: middle;
+  text-anchor: start;
   alignment-baseline: text-before-edge;
 }
 
@@ -302,10 +302,8 @@ stroke-width:1px;
 	    		.attr("opacity",0.65);
 
 
-//var switches = headers.selectAll("switch")
-  //      .data(data)
-
-var newSwitches = headers.append("switch");
+        //implement switch for compatibility with IE  which doesn't accept ForeignObject
+        var newSwitches = headers.append("switch");
 
 
 				foreignObjects = newSwitches
@@ -315,20 +313,20 @@ var newSwitches = headers.append("switch");
 	                //.attr('y', 0)
 	                .attr('width', width-2*margin)
 	                .attr('height', window.innerHeight/10)
-    .attr("requiredFeatures","http://www.w3.org/TR/SVG11/feature#Extensibility")
+                  .attr("requiredFeatures","http://www.w3.org/TR/SVG11/feature#Extensibility")
 	                .append("xhtml:body")
                   .append("div")
                   .append("p")
-            .attr("class","headingTitle")
+                  .attr("class","headingTitle")
 	                .text(function(d) { return d.Indicator; });//'<div style=\"width:'+ width-2*margin+'\">'+d+'</div>');
 
 
 // If it fails, show our other labels instead.
 
-newSwitches.append("text")
+newSwitches.append("svg:tspan").append("text")
     .attr("class","text-headingTitle")
-                  .attr('x', 5)
-                  .attr('y', 20)
+                  //.attr('x', 5)
+                  //.attr('y', 20)
                   .attr('width', width-2*margin)
                   .attr('height', window.innerHeight/10)
     .text(function(d,i) { return d.Indicator});
