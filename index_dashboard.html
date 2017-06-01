@@ -82,6 +82,17 @@ stroke-width:1px;
   -webkit-font-smoothing: antialiased;
 }
 
+.text-headingTitle{
+  /**font-family: TheSerif;
+  font-weight: 400;
+  /**font-size:12px;**/
+  font-size:1vw;
+  color:#0B1E2D;
+  word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-anchor: start;
+  alignment-baseline: text-before-edge;
+}
 
 #toolbar{
     display: inline-block;
@@ -290,14 +301,35 @@ stroke-width:1px;
 	    		})
 	    		.attr("opacity",0.65);
 
-				headers.append('foreignObject')
+
+        //implement switch for compatibility with IE  which doesn't accept ForeignObject
+        var newSwitches = headers.append("switch");
+
+
+				foreignObjects = newSwitches
+            .append('foreignObject')
 	    			.attr("class","headingTitle")
-	                //.attr('x', 5)
-	                //.attr('y', 20)
-	                .attr('width', width-2*margin)
-	                .attr('height', window.innerHeight/10)
-	                .append("xhtml:div")
-	                .html(function(d) { return "<div>"+d.Indicator+"</div>"; })//'<div style=\"width:'+ width-2*margin+'\">'+d+'</div>');
+            //.attr('x', 0)
+            //.attr('y', 0)
+            .attr('width', width-2*margin)
+            .attr('height', window.innerHeight/10)
+            .attr("requiredFeatures","http://www.w3.org/1999/xhtml")
+            .append("xhtml:body")
+            .attr("xmlns","http://www.w3.org/1999/xhtml")
+            .append("p")
+            .attr("class","headingTitle")
+            .text(function(d,i) { return d.Indicator; });//'<div style=\"width:'+ width-2*margin+'\">'+d+'</div>');
+
+
+        // If it fails, show our other labels instead.
+        newSwitches.append("text")
+            .attr("class","text-headingTitle")
+            .attr('x', 5)
+            .attr('y', 20)
+            //.attr('width', width-2*margin)
+            //.attr('height', window.innerHeight/10)
+            .text(function(d) { return (d.Indicator).substring(0, 18)});//substring as text doesn't go to next line.
+
 
         headers.append("image")
             .attr('x', 0.98*(width-2*margin)-width/5)
