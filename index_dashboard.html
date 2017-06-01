@@ -313,7 +313,7 @@ stroke-width:1px;
 	                //.attr('y', 0)
 	                .attr('width', width-2*margin)
 	                .attr('height', window.innerHeight/10)
-                  .attr("requiredFeatures","http://www.w3.org/TR/SVG11/feature#Extensibility")
+                  .attr("requiredFeatures","http://www.w3.org/1999/xhtml")
 	                .append("xhtml:body")
                   .append("div")
                   .append("p")
@@ -321,15 +321,15 @@ stroke-width:1px;
 	                .text(function(d) { return d.Indicator; });//'<div style=\"width:'+ width-2*margin+'\">'+d+'</div>');
 
 
-// If it fails, show our other labels instead.
+        // If it fails, show our other labels instead.
 
-newSwitches.append("svg:tspan").append("text")
-    .attr("class","text-headingTitle")
-                  //.attr('x', 5)
-                  //.attr('y', 20)
-                  .attr('width', width-2*margin)
-                  .attr('height', window.innerHeight/10)
-    .text(function(d,i) { return d.Indicator});
+        newSwitches.append("svg:tspan").append("text")
+            .attr("class","text-headingTitle")
+                          //.attr('x', 5)
+                          //.attr('y', 20)
+                          .attr('width', width-2*margin)
+                          .attr('height', window.innerHeight/10)
+            .text(function(d,i) { return d.Indicator});
 
         headers.append("image")
             .attr('x', 0.98*(width-2*margin)-width/5)
