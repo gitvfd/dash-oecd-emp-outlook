@@ -14,6 +14,7 @@ body{
 
 	margin-top:15px;
 	margin-bottom:5px;
+	width:100%;
 }
 
 .Explanation{
@@ -24,7 +25,7 @@ clear: both; float: left; display: block; position: relative;
 	color:#575757;
 	margin-top:5px;
 	margin-bottom:10px;
-    display: inline-block;
+	width:100%;
 }
 
 
@@ -34,7 +35,7 @@ clear: both; float: left; display: block; position: relative;
 	font:TheSerif;
 	font-size: 18px;
 	color:#0297C9;
-	max-width: 30%
+	max-width: 33%
 }
 
 .metadata{
@@ -43,7 +44,7 @@ clear: both; float: left; display: block; position: relative;
 	font:TheSerif;
 	font-size: 18px;
 	color:#0297C9;
-	height:80px;
+	height:90px;
 }
 .sub{
 
@@ -52,6 +53,7 @@ clear: both; float: left; display: block; position: relative;
 	font-style: italic;
 	font-size: 11px;
 	color:#575757;
+	max-width: 90%;
 }
 
 .def{
@@ -169,14 +171,40 @@ margin-top: :5px;
 }
 
 .selector{
-
-clear: both; float: left; display: block; position: relative;
+	clear: both; float: left; display: block; position: relative;
 	font-family:TheSerif;
 	font-size:14px ;
 	font-weight: bold;
 	color: #5E0084;
 	margin-bottom: 10px
 
+}
+
+.radialLabel{
+	font-size:0.65vw;
+}
+@media screen and  (max-width: 800px) {
+.radial{
+    display: inline-block;
+	float:left;
+	font:TheSerif;
+	font-size: 18px;
+	color:#0297C9;
+	max-width: 100%
+}
+
+.radialLabel{
+	font-size:1.8vw;
+}
+
+.sector {
+clear: both; float: left; display: block; position: relative;
+font-family:TheSerif;
+font-size: 4vw;
+color:#8EA4B1;
+margin-top: :5px;
+
+}
 }
 
 </style>
@@ -342,10 +370,10 @@ var overallwidth=document.getElementById("page").offsetWidth;
 
 var width;
 
-/**if (overallwidth>700)**/
+if (overallwidth>700)
 	width = overallwidth/3;
-/**else
-	width = overallwidth;**/
+else
+	width = overallwidth;
 
 
 var barHeight = width / 3 ;
@@ -496,9 +524,10 @@ function createRadial(topicSelected){
 		labels.selectAll("text")
 		    .data(keys)
 		    .enter().append("text")
+		    .attr("class","radialLabel")
 		    .style("text-anchor", "middle")
 		    .style("font-weight","normal")
-		    .style("font-size","0.5vw")
+		    //.style("font-size","0.65vw")
 		    .style("fill", function(d, i) {return "#575757";})
 		    .append("textPath")
 		    .attr("xlink:href", "#label-path")
@@ -593,7 +622,7 @@ function createRadial(topicSelected){
 	            	if (indicator=="LowIncome")
 	            		return "Low income rate (" + d.yearData  +")" ;
 	            	if (indicator=="GenderIneq")
-	            		return "Gender income inequality (" + d.yearData  +")" ;
+	            		return "Gender Labour Income Gap (" + d.yearData  +")" ;
 	            	if (indicator=="EmplGap")
 	            		return "Employment gap for disadvantaged groups (" + d.yearData  +")" ;
 

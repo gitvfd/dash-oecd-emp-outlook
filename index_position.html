@@ -403,7 +403,11 @@ test="#"+topicSelected;
 		var minValue = d3.min(data, function(d) { return parseFloat(d.value); });
 		var maxValue = d3.max(data, function(d) { return parseFloat(d.value); });
 
-		x.domain([minValue,maxValue]) ;
+		if(topicSelected=="EarnQual" || topicSelected=="Emp" || topicSelected=="EmpFTI")
+			x.domain([minValue,maxValue]) ;
+		else
+			x.domain([maxValue,minValue]) ;
+
 
 		compChart.append("line")
 			.attr("x1",x(minValue))
