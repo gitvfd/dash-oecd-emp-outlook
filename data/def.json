@@ -15,7 +15,7 @@
    "Indicator": "Full-time equivalent employment rate",
    "code":"EmpFTI",
    "Sector": "Quantity",
-   "Definition": "Share of working age population (15-64 years) in employment (%) (2015)"
+   "Definition": "Share in full-time equivalent units of working age population (15-64 years) in employment (%) (2015)"
  },
  {
    "Indicator": "Unemployment rate",
@@ -33,7 +33,7 @@
    "Indicator": "Labour market insecurity",
    "code":"LabMarkSec",
    "Sector": "Quality",
-   "Definition": "Expected monetary loss associated with becoming and staying unemployed as a share of previous earnings (2013)"
+   "Definition": "Expected monetary loss associated with becoming and staying unemployed as a share of previous earnings (%) (2013)"
  },
  {
    "Indicator": "Job strain",
@@ -42,22 +42,16 @@
    "Definition": "Share of workers experiencing job strain (2015)"
  },
  {
-   "Indicator": "Very long-hours of work",
-   "code":"LongHours",
-   "Sector": "Quality",
-   "Definition": "% of workers usually working 60 or more hours in their main job (2015)"
- },
- {
    "Indicator": "Low income rate",
    "code":"LowIncome",
    "Sector": "Inclusiveness",
    "Definition": "Share of working age persons (18-65 years) living with less than 50% of median equivalised household disposable income (2013)"
  },
  {
-   "Indicator": "Gender income inequality",
+   "Indicator": "Gender Labour income gap",
    "code":"GenderIneq",
    "Sector": "Inclusiveness",
-   "Definition": "Difference between average annual earnings of men and women divided by average earnings of men (%) (2014)"
+   "Definition": "Difference between average annual labour income of men and women divided by average labour income of men (%) (2014)"
  },
  {
    "Indicator": "Employment gap for disadvantaged groups",

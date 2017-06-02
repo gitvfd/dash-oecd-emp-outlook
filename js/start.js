@@ -13,7 +13,7 @@
   		xEarnQual.domain([0, d3.max(data_sort, function(d) { return  parseFloat(d.EarnQual); })]);
   		xLabMarkSec.domain([0, d3.max(data_sort, function(d) { return  parseFloat(d.LabMarkSec); })]);
   		xJobStrain.domain([0, d3.max(data_sort, function(d) { return  parseFloat(d.JobStrain); })]);
-  		xLongHours.domain([0, d3.max(data_sort, function(d) { return  parseFloat(d.LongHours); })]);
+  		/**xLongHours.domain([0, d3.max(data_sort, function(d) { return  parseFloat(d.LongHours); })]);**/
   		xLowIncome.domain([0, d3.max(data_sort, function(d) { return  parseFloat(d.LowIncome); })]);
   		xGenderIneq.domain([0, d3.max(data_sort, function(d) { return  parseFloat(d.GenderIneq); })]);
   		xEmplGap.domain([0, d3.max(data_sort, function(d) { return  parseFloat(d.EmplGap); })]);
@@ -42,7 +42,7 @@
           .attr("id",function(d){ return d.Country.replace(/\s+/g, '');  })
       		.attr("x", 0)
       		.attr("y", function(d, i) { return  i * barHeight ; })
-      		.attr("dy", "1em")
+      		.attr("dy", "0.75em")
       		.text(function(d) { return d.Country; })
 
     	bar.append("rect")
@@ -147,7 +147,7 @@
       			return opacityIndicator(d.JobStrain,d.Country,"JobStrain");
       		});      	
 
-      	bar.append("rect")
+      	/**bar.append("rect")
       		.attr("class",function(d){return "LongHours"+" "+d.Country.replace(/\s+/g, '');  })
     		.attr("x",7*width)
     		.attr("y",function(d, i) { return  i * barHeight ; })
@@ -162,11 +162,11 @@
       		})
       		.attr("opacity",function(d){
       			return opacityIndicator(d.LongHours,d.Country,"LongHours");
-      		});        	
+      		});  **/      	
 
       	bar.append("rect")
       		.attr("class",function(d){return "LowIncome"+" "+d.Country.replace(/\s+/g, '');  })
-    		.attr("x",8*width)
+    		.attr("x",7*width)
     		.attr("y",function(d, i) { return  i * barHeight ; })
       		.attr("width", function(d) { return xLowIncome(d.LowIncome); })
       		.attr("height", barHeight -1)
@@ -183,7 +183,7 @@
 
       	bar.append("rect")
       		.attr("class",function(d){return "GenderIneq"+" "+d.Country.replace(/\s+/g, '');  })
-    		.attr("x",9*width)
+    		.attr("x",8*width)
     		.attr("y",function(d, i) { return  i * barHeight ; })
       		.attr("width", function(d) { return xGenderIneq(d.GenderIneq); })
       		.attr("height", barHeight -1)
@@ -200,7 +200,7 @@
 
       	bar.append("rect")
       		.attr("class",function(d){return "EmplGap"+" "+d.Country.replace(/\s+/g, '');  })
-    		.attr("x",10*width)
+    		.attr("x",9*width)
     		.attr("y",function(d, i) { return  i * barHeight ; })
       		.attr("width", function(d) { return xEmplGap(d.EmplGap); })
       		.attr("height", barHeight -1)
@@ -311,8 +311,8 @@
 	            		return "Labour market insecurity (" + yearToolTip +")" ;
 	            	if (indicator=="JobStrain")
 	            		return "Job strain (" + yearToolTip +")" ;
-	            	if (indicator=="LongHours")
-	            		return "Very long-hours of work (" + yearToolTip +")" ;
+	            	/**if (indicator=="LongHours")
+	            		return "Very long-hours of work (" + yearToolTip +")" ;**/
 	            	if (indicator=="LowIncome")
 	            		return "Low income rate (" + yearToolTip +")" ;
 	            	if (indicator=="GenderIneq")
