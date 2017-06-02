@@ -317,7 +317,6 @@ height:15px;
 		<span id="EmplGap"></span>
 	</div>
 </div>
-<Br/>
 
 <div id="countryTooltipSetUP" class="hidden">
               <p><span id="countryTooltip">All</span></p><Br/>
@@ -475,7 +474,8 @@ test="#"+topicSelected;
 
 			var xPosition = event.pageX-20;
 			var yPosition = event.pageY+15;
-
+			if (yPosition>window.innerHeight-200)
+				yPosition=yPosition-160;
 
 			//Update the tooltip position and value
 
