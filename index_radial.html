@@ -431,8 +431,8 @@ function createRadial(topicSelected){
 		data.sort(function(a,b) { return parseFloat(b.value) - parseFloat(a.value); });
 
 		//var extent = d3.extent(data, function(d) { return parseFloat(d.value); });
-
-		var extent = [0,d3.max(data, function(d) { return parseFloat(d.value); })];
+		var max=d3.max(data, function(d) { return parseFloat(d.value); })
+		var extent = [0,max];
 
 	  	var barScale = d3.scaleLinear()
 	      .domain(extent)
@@ -458,26 +458,43 @@ function createRadial(topicSelected){
 	      	.style("stroke", "#E9F2F6")
 	      	.style("stroke-width","1.5px");
 
-	  	var circles = radialChart.selectAll("circle")
-	          	.data(x.ticks(3))
-	        	.enter().append("circle")
-	          	.attr("r", function(d) {return barScale(d);})
-	          	.style("fill", "none")
-	          	.style("stroke", "#E9F2F6")
-	          	.style("stroke-dasharray", "2,2")
-	          	.style("stroke-width","1.5px");
-
 	  	var arc = d3.arc()
 	      	.startAngle(function(d,i) { return (i * 2 * Math.PI) / numBars; })
 	      	.endAngle(function(d,i) { return ((i + 1) * 2 * Math.PI) / numBars; })
 	      	.innerRadius(0);
 
 
-	  	var segments = radialChart.selectAll("path")
+	    //Create invisible blue segments to ease mouse over
+	  	var arcInvisible = d3.arc()
+	      	.startAngle(function(d,i) { return (i * 2 * Math.PI) / numBars; })
+	      	.endAngle(function(d,i) { return ((i + 1) * 2 * Math.PI) / numBars; })
+	      	.innerRadius(0)
+	      	.outerRadius(barScale(max));
+
+ 	  	var segments_invisible = radialChart.selectAll("path")
+	          .data(data)
+	        .enter().append("path")
+	        .attr("class",function(d){return "invisible_"+pickSector(topicSelected);})
+	        .attr("id",function(d){return "invisible_"+d.ISO;})
+	        .each(function(d) { d.outerRadius = barScale(max); })
+	        .attr("d", arcInvisible)
+	      	.style("fill", "#DDE9EF")
+	      	.style("stroke", "#E9F2F6")
+	      	.style("stroke-width","1px");
+			//.style("pointer-events", "all");	      	
+
+
+		
+		var test=radialChart.append("g")
+
+
+
+
+	  	var segments = test.selectAll("path")
 	          .data(data)
 	        .enter().append("path")
 	        .attr("class",function(d){return pickSector(topicSelected);})
-	        .attr("id",function(d){return d.ISO;})
+	        .attr("id",function(d){return topicSelected+d.ISO;})
 	          .each(function(d) { d.outerRadius = 0; })
 	          .style("fill", function (d) { 
 	          	if(d.Country=="OECD")
@@ -495,6 +512,16 @@ function createRadial(topicSelected){
 	            return function(t) { d.outerRadius = i(t); return arc(d,index); };
 	        });    
 
+
+
+	  	var circles = radialChart.selectAll("circle")
+	          	.data(x.ticks(3))
+	        	.enter().append("circle")
+	          	.attr("r", function(d) {return barScale(d);})
+	          	.style("fill", "none")
+	          	.style("stroke", "#E9F2F6")
+	          	.style("stroke-dasharray", "2,2")
+	          	.style("stroke-width","1.5px");
 
 
 		var lines = radialChart.selectAll("line")
@@ -590,8 +617,9 @@ function createRadial(topicSelected){
 	    ///////////////////////////////////////////////////////////////////////////
 	    ////////////////////////////// End Tooltip ////////////////////////////////
 	    ///////////////////////////////////////////////////////////////////////////
+		var classbar="."+pickSector(topicSelected);
 
-		radialChart.selectAll("path")
+		radialChart.selectAll(classbar)
 			.on("mouseover",function(d){
 				d3.select(this)
 				.style("fill","#E31741");
@@ -686,17 +714,125 @@ function createRadial(topicSelected){
 				
 				var indicator = topicSelected;
 
-				/**d3.selectAll(countryName)
-		      		.style("stroke","none");
 
-		        d3.selectAll(countryTitle)
-		            .style("font-weight","normal")**/
+	            //Hide the tooltip
+	            tooltipWrapper
+	                .transition().duration(200)
+	                .style("opacity", 0);
+			});
+
+
+
+		//Mouse over the hidden blue country bars 
+
+		var classinvisiblebar=".invisible_"+pickSector(topicSelected);
+
+		radialChart.selectAll(classinvisiblebar)
+			.on("mouseover",function(d){
+				var idSel="#"+topicSelected+(this.id).split(/[_]+/)[1]
+				
+				d3.select(idSel)
+				//.selectAll(idSel)
+				.style("fill","#E31741");
+				var indicator = topicSelected;
+
+				countryName="."+d.Country;
+				countryName=countryName.replace(/\s+/g, '')
+				
+        		countryTitle="#"+d.Country.replace(/\s+/g, '');
+        		var pos4Tooltip="#ID"+topicSelected
+
+       			
+				tooltipDim.text(function(){
+	            	if (indicator=="Emp")
+	            		return "Employment rate (" + d.yearData +")";
+	            	if (indicator=="EmpFTI")
+	            		return "Full-time equivalent employment rate (" + d.yearData  +")";
+	            	if (indicator=="Unemp")
+	            		return "Unemployment rate (" + d.yearData  +")";
+	            	if (indicator=="EarnQual")
+	            		return "Earnings quality (" + d.yearData  +")";
+	            	if (indicator=="LabMarkSec")
+	            		return "Labour market insecurity (" + d.yearData  +")" ;
+	            	if (indicator=="JobStrain")
+	            		return "Job strain (" + d.yearData  +")" ;
+	            	if (indicator=="LongHours")
+	            		return "Very long-hours of work (" + d.yearData  +")" ;
+	            	if (indicator=="LowIncome")
+	            		return "Low income rate (" + d.yearData  +")" ;
+	            	if (indicator=="GenderIneq")
+	            		return "Gender Labour Income Gap (" + d.yearData  +")" ;
+	            	if (indicator=="EmplGap")
+	            		return "Employment gap for disadvantaged groups (" + d.yearData  +")" ;
+
+	            });
+
+        		tooltipCountry.text(d.Country);
+
+        		tooltipValue.text(function(){
+		            if (indicator=="EarnQual")
+		              return format(d.value) + " USD";
+		            else if  (indicator=="LabMarkSec")
+		              return format(d.value) + " ";
+		            else
+		              return format(d.value) + " %";
+	        	});
+        
+        		
+
+        		tooltipEvo.text("Evolution since 2006" );//+ d[evoCode] );
+    
+
+			    if(d.evoData=="down")
+			      tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-down.svg")
+			    else if (d.evoData=="up")
+			      tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-up.svg")
+			    else
+			      tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-right.svg")
+
+        		//Find the largest title
+        		var maxSize = Math.max(document.getElementById("tooltipDim").getComputedTextLength(), document.getElementById("tooltipValue").getComputedTextLength(),document.getElementById("tooltipCountry").getComputedTextLength(),document.getElementById("tooltipEvo").getComputedTextLength());
+
+
+        		tooltipBackground
+         			.transition().duration(100)
+            		.attr("x", -0.5 * maxSize*1.2)
+            		.attr("width", maxSize*1.2)
+
+ 				tooltipWrapper
+			                .transition().duration(200)
+			                .attr("transform", "translate(" + (width/3) + "," + (3/2*width/3)  + ")")
+			                .style("opacity", 1);
+		       
+		        
+
+			})
+			.on("mouseout",function(d){
+
+				var e = document.getElementById("dropDownButton");
+				var selectedCou = e.options[e.selectedIndex].value;
+
+				var idSel="#"+topicSelected+(this.id).split(/[_]+/)[1]
+				d3.select(idSel)
+				.style("fill",function (d) { 
+					if(d.ISO==selectedCou)
+	          			return "#5E0084";
+
+	          		else if(d.Country=="OECD")
+	          			return "#0B1E2D";
+	          		else
+	          			return colorScale(pickSector(topicSelected)); });
+		       
+				
+				var indicator = topicSelected;
+
 		              
 	            //Hide the tooltip
 	            tooltipWrapper
 	                .transition().duration(200)
 	                .style("opacity", 0);
 			});
+
 	});
 };
 
@@ -708,7 +844,6 @@ createRadial("Unemp");
 createRadial("EarnQual");
 createRadial("LabMarkSec");
 createRadial("JobStrain");
-createRadial("LongHours");
 createRadial("LowIncome");
 createRadial("GenderIneq");
 createRadial("EmplGap");
@@ -727,15 +862,75 @@ function highlightCountry(codeISO){
 		.filter(".Inclusiveness")
 				.style("fill","#00B26C")
 
+	//Select the OECD bar in all of the charts
 	d3.selectAll("path")
-		.filter("#OECD")
+		.filter("#EmpOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#EmpFTIOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#UnempOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#EarnQualOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#LabMarkSecOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#JobStrainOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#LowIncomeOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#GenderIneqOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#EmplGapOECD")
 				.style("fill","#0B1E2D");
 	
 
 	if (codeISO !=""){
-		topicID="#"+codeISO;
-		d3.selectAll(topicID)
+
+		//Select the coutry bar in all of the charts
+		topicIDEmp="#Emp"+codeISO;
+		d3.selectAll(topicIDEmp)
 			.style("fill","#5E0084");
+
+		topicIDEmpFTI="#EmpFTI"+codeISO;
+		d3.selectAll(topicIDEmpFTI)
+			.style("fill","#5E0084");
+
+		topicIDUnemp="#Unemp"+codeISO;
+		d3.selectAll(topicIDUnemp)
+			.style("fill","#5E0084");
+
+		topicIDEarnQual="#EarnQual"+codeISO;
+		d3.selectAll(topicIDEarnQual)
+			.style("fill","#5E0084");
+
+		topicIDLabMarkSec="#LabMarkSec"+codeISO;
+		d3.selectAll(topicIDLabMarkSec)
+			.style("fill","#5E0084");
+
+		topicIDJobStrain="#JobStrain"+codeISO;
+		d3.selectAll(topicIDJobStrain)
+			.style("fill","#5E0084");
+
+		topicIDLowIncome="#LowIncome"+codeISO;
+		d3.selectAll(topicIDLowIncome)
+			.style("fill","#5E0084");
+
+		topicIDGenderIneq="#GenderIneq"+codeISO;
+		d3.selectAll(topicIDGenderIneq)
+			.style("fill","#5E0084");
+
+		topicIDEmplGap="#EmplGap"+codeISO;
+		d3.selectAll(topicIDEmplGap)
+			.style("fill","#5E0084");
+
 	}
 }
 
