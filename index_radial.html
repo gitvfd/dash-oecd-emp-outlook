@@ -396,6 +396,92 @@ function pickSector(topicSelected){
 		return "Inclusiveness";
 };
 
+
+function highlightCountry(codeISO){
+
+	d3.selectAll("path")
+		.filter(".Quality")
+				.style("fill","#EF9200");
+	
+	d3.selectAll("path")
+		.filter(".Quantity")
+				.style("fill","#00B7B5")
+	d3.selectAll("path")
+		.filter(".Inclusiveness")
+				.style("fill","#00B26C")
+
+	//Select the OECD bar in all of the charts
+	d3.selectAll("path")
+		.filter("#EmpOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#EmpFTIOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#UnempOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#EarnQualOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#LabMarkSecOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#JobStrainOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#LowIncomeOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#GenderIneqOECD")
+				.style("fill","#0B1E2D");
+	d3.selectAll("path")
+		.filter("#EmplGapOECD")
+				.style("fill","#0B1E2D");
+	
+
+	if (codeISO !=""){
+
+		//Select the coutry bar in all of the charts
+		topicIDEmp="#Emp"+codeISO;
+		d3.selectAll(topicIDEmp)
+			.style("fill","#5E0084");
+
+		topicIDEmpFTI="#EmpFTI"+codeISO;
+		d3.selectAll(topicIDEmpFTI)
+			.style("fill","#5E0084");
+
+		topicIDUnemp="#Unemp"+codeISO;
+		d3.selectAll(topicIDUnemp)
+			.style("fill","#5E0084");
+
+		topicIDEarnQual="#EarnQual"+codeISO;
+		d3.selectAll(topicIDEarnQual)
+			.style("fill","#5E0084");
+
+		topicIDLabMarkSec="#LabMarkSec"+codeISO;
+		d3.selectAll(topicIDLabMarkSec)
+			.style("fill","#5E0084");
+
+		topicIDJobStrain="#JobStrain"+codeISO;
+		d3.selectAll(topicIDJobStrain)
+			.style("fill","#5E0084");
+
+		topicIDLowIncome="#LowIncome"+codeISO;
+		d3.selectAll(topicIDLowIncome)
+			.style("fill","#5E0084");
+
+		topicIDGenderIneq="#GenderIneq"+codeISO;
+		d3.selectAll(topicIDGenderIneq)
+			.style("fill","#5E0084");
+
+		topicIDEmplGap="#EmplGap"+codeISO;
+		d3.selectAll(topicIDEmplGap)
+			.style("fill","#5E0084");
+
+	}
+}
+
 function createRadial(topicSelected){
 	var idTopic="#"+topicSelected;
 	var IDChart="ID"+topicSelected;
@@ -719,10 +805,11 @@ function createRadial(topicSelected){
 	            tooltipWrapper
 	                .transition().duration(200)
 	                .style("opacity", 0);
-			});
-
-
-
+			})
+			.on("click",function(d){
+				document.getElementById("dropDownButton").value = d.ISO;
+				highlightCountry(d.ISO)
+			})
 		//Mouse over the hidden blue country bars 
 
 		var classinvisiblebar=".invisible_"+pickSector(topicSelected);
@@ -831,6 +918,11 @@ function createRadial(topicSelected){
 	            tooltipWrapper
 	                .transition().duration(200)
 	                .style("opacity", 0);
+			})
+
+			.on("click",function(d){
+				document.getElementById("dropDownButton").value = d.ISO;
+				highlightCountry(d.ISO)
 			});
 
 	});
@@ -849,90 +941,6 @@ createRadial("GenderIneq");
 createRadial("EmplGap");
 
 
-function highlightCountry(codeISO){
-
-	d3.selectAll("path")
-		.filter(".Quality")
-				.style("fill","#EF9200");
-	
-	d3.selectAll("path")
-		.filter(".Quantity")
-				.style("fill","#00B7B5")
-	d3.selectAll("path")
-		.filter(".Inclusiveness")
-				.style("fill","#00B26C")
-
-	//Select the OECD bar in all of the charts
-	d3.selectAll("path")
-		.filter("#EmpOECD")
-				.style("fill","#0B1E2D");
-	d3.selectAll("path")
-		.filter("#EmpFTIOECD")
-				.style("fill","#0B1E2D");
-	d3.selectAll("path")
-		.filter("#UnempOECD")
-				.style("fill","#0B1E2D");
-	d3.selectAll("path")
-		.filter("#EarnQualOECD")
-				.style("fill","#0B1E2D");
-	d3.selectAll("path")
-		.filter("#LabMarkSecOECD")
-				.style("fill","#0B1E2D");
-	d3.selectAll("path")
-		.filter("#JobStrainOECD")
-				.style("fill","#0B1E2D");
-	d3.selectAll("path")
-		.filter("#LowIncomeOECD")
-				.style("fill","#0B1E2D");
-	d3.selectAll("path")
-		.filter("#GenderIneqOECD")
-				.style("fill","#0B1E2D");
-	d3.selectAll("path")
-		.filter("#EmplGapOECD")
-				.style("fill","#0B1E2D");
-	
-
-	if (codeISO !=""){
-
-		//Select the coutry bar in all of the charts
-		topicIDEmp="#Emp"+codeISO;
-		d3.selectAll(topicIDEmp)
-			.style("fill","#5E0084");
-
-		topicIDEmpFTI="#EmpFTI"+codeISO;
-		d3.selectAll(topicIDEmpFTI)
-			.style("fill","#5E0084");
-
-		topicIDUnemp="#Unemp"+codeISO;
-		d3.selectAll(topicIDUnemp)
-			.style("fill","#5E0084");
-
-		topicIDEarnQual="#EarnQual"+codeISO;
-		d3.selectAll(topicIDEarnQual)
-			.style("fill","#5E0084");
-
-		topicIDLabMarkSec="#LabMarkSec"+codeISO;
-		d3.selectAll(topicIDLabMarkSec)
-			.style("fill","#5E0084");
-
-		topicIDJobStrain="#JobStrain"+codeISO;
-		d3.selectAll(topicIDJobStrain)
-			.style("fill","#5E0084");
-
-		topicIDLowIncome="#LowIncome"+codeISO;
-		d3.selectAll(topicIDLowIncome)
-			.style("fill","#5E0084");
-
-		topicIDGenderIneq="#GenderIneq"+codeISO;
-		d3.selectAll(topicIDGenderIneq)
-			.style("fill","#5E0084");
-
-		topicIDEmplGap="#EmplGap"+codeISO;
-		d3.selectAll(topicIDEmplGap)
-			.style("fill","#5E0084");
-
-	}
-}
 
 function setupButtons() {
     d3.select('#toolbar')
