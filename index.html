@@ -356,17 +356,12 @@ stroke-width:1px;
           console.log("test")
           Titles = headers.append("text")
             .attr("class","headingTitle")
-            
-          .append('tspan')
+
+            .append('tspan')
             .attr('x', 0)
-            .attr('y', 0)
+            .attr('y', 15)
             .attr('width', width-2*margin)
             .attr('height', window.innerHeight/10)
-            //.attr("requiredFeatures","http://www.w3.org/1999/xhtml")
-            //.append("xhtml:body")
-            //.attr("xmlns","http://www.w3.org/1999/xhtml")
-            //.append("p")
-            //.attr("class","headingTitle")
             .text(function(d,i) { return d.Indicator; });        
         }else{
           console.log("test1")
