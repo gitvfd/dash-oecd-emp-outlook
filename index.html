@@ -353,19 +353,21 @@ stroke-width:1px;
             //.text(function(d) { return (d.Indicator).substring(0, 18)});//substring as text doesn't go to next line.**/
         var Titles;
         if (!Modernizr.svgforeignobject) {
+          console.log("test")
           Titles = headers.append('tspan')
             .attr("class","headingTitle")
-            //.attr('x', 0)
-            //.attr('y', 0)
+            .attr('x', 0)
+            .attr('y', 0)
             .attr('width', width-2*margin)
             .attr('height', window.innerHeight/10)
             //.attr("requiredFeatures","http://www.w3.org/1999/xhtml")
-            .append("xhtml:body")
+            //.append("xhtml:body")
             //.attr("xmlns","http://www.w3.org/1999/xhtml")
-            .append("p")
+            //.append("p")
             .attr("class","headingTitle")
             .text(function(d,i) { return d.Indicator; });        
         }else{
+          console.log("test1")
           Titles = headers.append('foreignObject')
             .attr("class","headingTitle")
             //.attr('x', 0)
