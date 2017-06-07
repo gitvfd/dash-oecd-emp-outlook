@@ -165,6 +165,7 @@ stroke-width:1px;
 <div id="viz"></div>
 </body>
 <script src="libs/d3.v4.min.js"></script>
+<script src="libs/modernizr.js"></script>
 <!-- jQuery 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 -->
@@ -323,7 +324,7 @@ stroke-width:1px;
 
 
         //implement switch for compatibility with IE  which doesn't accept ForeignObject:  https://developer.mozilla.org/fr/docs/Web/SVG/Element/foreignObject
-        var newSwitches = headers.append("switch");
+        /**var newSwitches = headers.append("switch");
 
 				foreignObjects = newSwitches
             .append('foreignObject')
@@ -339,6 +340,8 @@ stroke-width:1px;
             .attr("class","headingTitle")
             .text(function(d,i) { return d.Indicator; });//'<div style=\"width:'+ width-2*margin+'\">'+d+'</div>');
 
+
+
         // If it fails, show our other labels instead.
         newSwitches.append("text")
             .attr("class","text-headingTitle")
@@ -347,8 +350,37 @@ stroke-width:1px;
             //.attr('width', width-2*margin)
             //.attr('height', window.innerHeight/10)
             .text(function(d) { return (d.Indicator)});
-            //.text(function(d) { return (d.Indicator).substring(0, 18)});//substring as text doesn't go to next line.
-
+            //.text(function(d) { return (d.Indicator).substring(0, 18)});//substring as text doesn't go to next line.**/
+        var Titles;
+        if (!Modernizr.svgforeignobject) {
+          console.log("test")
+          Titles = headers.append('tspan')
+            .attr("class","headingTitle")
+            .attr('x', 0)
+            .attr('y', 0)
+            .attr('width', width-2*margin)
+            .attr('height', window.innerHeight/10)
+            //.attr("requiredFeatures","http://www.w3.org/1999/xhtml")
+            //.append("xhtml:body")
+            //.attr("xmlns","http://www.w3.org/1999/xhtml")
+            //.append("p")
+            .attr("class","headingTitle")
+            .text(function(d,i) { return d.Indicator; });        
+        }else{
+          console.log("test1")
+          Titles = headers.append('foreignObject')
+            .attr("class","headingTitle")
+            //.attr('x', 0)
+            //.attr('y', 0)
+            .attr('width', width-2*margin)
+            .attr('height', window.innerHeight/10)
+            //.attr("requiredFeatures","http://www.w3.org/1999/xhtml")
+            .append("xhtml:body")
+            //.attr("xmlns","http://www.w3.org/1999/xhtml")
+            .append("p")
+            .attr("class","headingTitle")
+            .text(function(d,i) { return d.Indicator; });
+        }
 
         headers.append("image")
             .attr('x', 0.98*(width-2*margin)-width/5)
