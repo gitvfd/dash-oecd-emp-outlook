@@ -48,7 +48,7 @@
    "Definition": "Share of working age persons (18-65 years) living with less than 50% of median equivalised household disposable income (2013)"
  },
  {
-   "Indicator": "Gender Labour income gap",
+   "Indicator": "Gender labour income gap",
    "code":"GenderIneq",
    "Sector": "Inclusiveness",
    "Definition": "Difference between average annual labour income of men and women divided by average labour income of men (%) (2014)"
