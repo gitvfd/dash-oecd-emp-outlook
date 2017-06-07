@@ -11,13 +11,13 @@ body{
 }
 
 #quantity{
-  border-top: 5px solid #00B7B5; 
+  border-top: 3px solid #00B7B5; 
 }
 #quality{
-  border-top: 5px solid #EF9200; 
+  border-top: 3px solid #EF9200; 
 }
 #inclusiveness{
-  border-top: 5px solid #00B26C; 
+  border-top: 3px solid #00B26C; 
 }
 .selector{
 
@@ -60,14 +60,21 @@ clear: both; float: left; display: block; position: relative;
 }
 
 .metadata{
-    display: inline-block;
+    display: block;
 	float:left;
 	font:TheSerif;
 	font-size: 18px;
 	color:#0297C9;
 }
+.def{
+    display: block;
+	
+	font:TheSerif;
+	font-size: 12px;
+	color:#7A7A7A;
+}
 .sub{
-
+	clear: both; 
     display: block;
 	font:TheSerif;
 	font-style: italic;
@@ -75,14 +82,7 @@ clear: both; float: left; display: block; position: relative;
 	color:#575757;
 }
 
-.def{
 
-    display: block;
-	float:left;
-	font:TheSerif;
-	font-size: 12px;
-	color:#7A7A7A;
-}
 
 span{
 	display: block;
@@ -242,27 +242,30 @@ height:15px;
 </select>
 </div>
 </Br>
+<div class="sub"> Countries on the left hand side are bottom performers for the indicators while countries on the right hand side are top performers.
+</div>	
+</Br>
 <div class="sector" >
 	Quantity
 </div>
 <div class="sector" id="quantity">
 	<div class="compareChart">
 		<div class="metadata">Employment rate
-		<span class="sub">The higher the value the <b>best</b> the country performs</span>
+		<!--<span class="sub">The higher the value the <b>best</b> the country performs</span>-->
 		<span class="def">Share of working age population (15-64 years) in employment (%) (2015) </span>
 		</div>
 		<span id="Emp"></span>
 	</div>
 	<div class="compareChart" >
 		<div class="metadata">Full-Time Equivalent employment rate 
-		<span class="sub">The higher the value the <b>best</b> the country performs</span> 
+		<!--<span class="sub">The higher the value the <b>best</b> the country performs</span>--> 
 		<span class="def">Share in full-time equivalent units of working age population (15-64 years) in employment (%) (2015)</span>
 		</div>
 		<span id="EmpFTI"></span>
 	</div>
 	<div class="compareChart" >
 		<div class="metadata">Unemployment rate
-		<span class="sub">The higher the value the <b>worse</b> the country performs</span> 
+		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
 		<span class="def">Share of persons in the labour force (15-64 years) in unemployment (%) (2015)</span>
 		</div>
 		<span id="Unemp"></span>
@@ -274,21 +277,21 @@ height:15px;
 <div class="sector" id="quality">
 	<div class="compareChart" >
 		<div class="metadata">Earnings quality
-		<span class="sub">The higher the value the <b>best</b> the country performs</span> 
+		<!--<span class="sub">The higher the value the <b>best</b> the country performs</span>--> 
 		<span class="def">Gross hourly earnings in USD adjusted for inequality (2013)</span>
 		</div>
 		<span id="EarnQual"></span>
 	</div>
 	<div class="compareChart" >
 		<div class="metadata">Labour market insecurity
-		<span class="sub">The higher the value the <b>worse</b> the country performs</span> 
+		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
 		<span class="def">Expected monetary loss associated with becoming and staying unemployed as a share of previous earnings (%) (2013)</span>
 		</div>
 		<span id="LabMarkSec"></span>
 	</div>
 	<div class="compareChart" >
 		<div class="metadata">Job strain
-		<span class="sub">The higher the value the <b>worse</b> the country performs</span> 
+		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
 		<span class="def">Share of workers experiencing job strain (2015)</span>
 		</div>
 		<span id="JobStrain"></span>
@@ -300,21 +303,21 @@ height:15px;
 <div class="sector" id="inclusiveness">
 	<div class="compareChart" >
 		<div class="metadata">Low income rate
-		<span class="sub">The higher the value the <b>worse</b> the country performs</span> 
+		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
 		<span class="def">Share of working age persons (18-65 years) living with less than 50% of median equivalised household disposable income (2013)</span>
 		</div>
 		<span id="LowIncome"></span>
 	</div>
 	<div class="compareChart" >
 		<div class="metadata">Gender labour income rate
-		<span class="sub">The higher the value the <b>worse</b> the country performs</span> 
+		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
 		<span class="def">Difference between average annual labour income of men and women divided by average labour income of men (%) (2014)</span>
 		</div>
 		<span id="GenderIneq"></span>
 	</div>
 	<div class="compareChart" >
 		<div class="metadata">Employment gap for disadvantaged groups
-		<span class="sub">The higher the value the <b>worse</b> the country performs</span> 
+		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
 		<span class="def">Average employment gap as a percentage of the benchmark group (prime-age male workers) (2015)</span>
 		</div>
 		<span id="EmplGap"></span>
@@ -451,24 +454,24 @@ test="#"+topicSelected;
 			.attr("class","label")
 			.attr("dx", function(d){
 				    	if(d.value!=="")
-				    		return x(parseFloat(d.value))-10;})
-			.attr("dy",height/2-10)
-			.text(function(d){return d.ISO;})
-
-		circleGroup.append("text")
-			.attr("class","datalabel")
-			.attr("dx", function(d){
-				    	if(d.value!=="")
-				    		return x(parseFloat(d.value))-10;})
-			.attr("dy",height/2+17)
+				    		return x(parseFloat(d.value));})
+			.attr("dy",function(d){
+				if(d.ISO==countrySel)
+					return height/2+17;
+				else
+					return height/2-10;
+			})
+			.style("text-anchor","middle")
 			.text(function(d){
+
 	            if (d.topic=="EarnQual")
-	              return format(d.value) + " USD";
+	              return  d.Country+ " (" + format(d.value) + " USD"+")";
 	            else if  (d.topic=="LabMarkSec")
-	              return format(d.value) + " ";
+	              return  d.Country+ " (" + format(d.value) + " "+")";
 	            else
-	              return format(d.value) + " %";
-        	})
+	              return  d.Country+ " (" + format(d.value) + " %"+")";return d.Country;})
+
+
 
 		compChart.selectAll("circle")
 			.on("mouseover",function(d){
