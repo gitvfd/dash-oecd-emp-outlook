@@ -2,8 +2,7 @@
 <meta charset="utf-8">
 <style type="text/css">
 body{
-	/**background:#EDF8F6;**/
-  			background-image:linear-gradient(rgba(156,217,176,0.3),rgba(0,183,181,0.15));
+	background:#EDF8F6;
 
   			
 	margin-right: 5%;
@@ -26,17 +25,17 @@ body{
 	font-size:14px ;
 	font-weight: bold;
 	color: #5E0084;
-	margin-top: 10px;
-	margin-bottom: 10px
+	margin-top: 5px;
+	margin-bottom: 5px
 
 }
 .title{
 	font:TheSerif;
-	font-size: 32px;
+	font-size: 24px;
 	color:#8EA4B1;
 
-	margin-top:15px;
-	margin-bottom:5px;
+	margin-top:7px;
+	margin-bottom:4px;
 }
 
 .Explanation{
@@ -52,7 +51,7 @@ clear: both; float: left; display: block; position: relative;
 
 
 .compareChart{
-clear: both; float: left; display: block; position: relative;
+	clear: both; float: left; display: block; position: relative;
 	font:TheSerif;
 	font-size: 18px;
 	color:#0297C9;
@@ -63,25 +62,17 @@ clear: both; float: left; display: block; position: relative;
     display: block;
 	float:left;
 	font:TheSerif;
-	font-size: 18px;
+	font-size: 16px;
 	color:#0297C9;
-}
-.def{
-    display: block;
-	
-	font:TheSerif;
-	font-size: 12px;
-	color:#7A7A7A;
 }
 .sub{
 	clear: both; 
     display: block;
 	font:TheSerif;
-	font-style: italic;
-	font-size: 11px;
+	font-style: normal;
+	font-size: 12px;
 	color:#575757;
 }
-
 
 
 span{
@@ -91,12 +82,41 @@ span{
 .sector {
 clear: both; float: left; display: block; position: relative;
 font-family:TheSerif;
-font-size: 2vw;
+font-size: 1.75vw;
 color:#8EA4B1;
-margin-top: :5px;
+margin-top: :3px;
 
 }
 
+
+[tooltip]:before {
+    /* needed - do not touch */
+    content: attr(tooltip);
+    position: absolute;
+    opacity: 0;
+    
+    /* customizable */
+    transition: all 0.15s ease;
+    padding: 10px;
+    color: #575757;font-family:TheSerif;
+font-size: 12px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px silver;    
+}
+
+[tooltip]:hover:before {
+    /* needed - do not touch */
+    opacity: 1;
+    
+    /* customizable */
+    background: rgb(252,252,252);
+    margin-top: -20px;
+    margin-left: 20px;    
+}
+
+[tooltip]:not([tooltip-persistent]):before {
+    pointer-events: none;
+}
 /* --- Tooltip --- */
 #countryTooltipSetUP {
   position: absolute;
@@ -193,8 +213,8 @@ height:15px;
 <Br/>
 <div class="selector">Highlight a country: 
 <select id="dropDownButton" onchange="highlightCountry(this.value)";>
-	 <option value="ARG" selected="selected">Argentina</option>
-	 <option value="AUS" >Australia</option>
+	 <option value="ARG" >Argentina</option>
+	 <option value="AUS" selected="selected">Australia</option>
 	 <option value="AUT" >Austria</option>
 	 <option value="BEL" >Belgium</option>
 	 <option value="BRA" >Brazil</option>
@@ -242,7 +262,7 @@ height:15px;
 </select>
 </div>
 </Br>
-<div class="sub"> Countries on the left hand side are bottom performers for the indicators while countries on the right hand side are top performers.
+<div class="sub"> Countries on the left hand side are <b>bottom performers</b> for the indicators while countries on the right hand side are <b>top performers</b>.
 </div>	
 </Br>
 <div class="sector" >
@@ -250,23 +270,17 @@ height:15px;
 </div>
 <div class="sector" id="quantity">
 	<div class="compareChart">
-		<div class="metadata">Employment rate
-		<!--<span class="sub">The higher the value the <b>best</b> the country performs</span>-->
-		<span class="def">Share of working age population (15-64 years) in employment (%) (2015) </span>
+		<div class="metadata" tooltip="Share of working age population (15-64 years) in employment (%) (2015) ">Employment rate
 		</div>
 		<span id="Emp"></span>
 	</div>
 	<div class="compareChart" >
-		<div class="metadata">Full-time equivalent employment rate 
-		<!--<span class="sub">The higher the value the <b>best</b> the country performs</span>--> 
-		<span class="def">Share in full-time equivalent units of working age population (15-64 years) in employment (%) (2015)</span>
+		<div class="metadata" tooltip="Share in full-time equivalent units of working age population (15-64 years) in employment (%) (2015)">Full-time equivalent employment rate 
 		</div>
 		<span id="EmpFTI"></span>
 	</div>
 	<div class="compareChart" >
-		<div class="metadata">Unemployment rate
-		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
-		<span class="def">Share of persons in the labour force (15-64 years) in unemployment (%) (2015)</span>
+		<div class="metadata" tooltip="Share of persons in the labour force (15-64 years) in unemployment (%) (2015)">Unemployment rate
 		</div>
 		<span id="Unemp"></span>
 	</div>
@@ -276,23 +290,17 @@ height:15px;
 </div>
 <div class="sector" id="quality">
 	<div class="compareChart" >
-		<div class="metadata">Earnings quality
-		<!--<span class="sub">The higher the value the <b>best</b> the country performs</span>--> 
-		<span class="def">Gross hourly earnings in USD adjusted for inequality (2013)</span>
+		<div class="metadata" tooltip="Gross hourly earnings in USD adjusted for inequality (2013)">Earnings quality
 		</div>
 		<span id="EarnQual"></span>
 	</div>
 	<div class="compareChart" >
-		<div class="metadata">Labour market insecurity
-		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
-		<span class="def">Expected monetary loss associated with becoming and staying unemployed as a share of previous earnings (%) (2013)</span>
+		<div class="metadata" tooltip="Expected monetary loss associated with becoming and staying unemployed as a share of previous earnings (%) (2013)">Labour market insecurity
 		</div>
 		<span id="LabMarkSec"></span>
 	</div>
 	<div class="compareChart" >
-		<div class="metadata">Job strain
-		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
-		<span class="def">Share of workers experiencing job strain (2015)</span>
+		<div class="metadata" tooltip="Share of workers experiencing job strain (2015)">Job strain
 		</div>
 		<span id="JobStrain"></span>
 	</div>
@@ -302,23 +310,17 @@ height:15px;
 </div>
 <div class="sector" id="inclusiveness">
 	<div class="compareChart" >
-		<div class="metadata">Low income rate
-		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
-		<span class="def">Share of working age persons (18-65 years) living with less than 50% of median equivalised household disposable income (2013)</span>
+		<div class="metadata" tooltip="Share of working age persons (18-65 years) living with less than 50% of median equivalised household disposable income (2013)">Low income rate
 		</div>
 		<span id="LowIncome"></span>
 	</div>
 	<div class="compareChart" >
-		<div class="metadata">Gender labour income gap
-		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
-		<span class="def">Difference between average annual labour income of men and women divided by average labour income of men (%) (2014)</span>
+		<div class="metadata" tooltip="Difference between average annual labour income of men and women divided by average labour income of men (%) (2014)">Gender labour income gap
 		</div>
 		<span id="GenderIneq"></span>
 	</div>
 	<div class="compareChart" >
-		<div class="metadata">Employment gap for disadvantaged groups
-		<!--<span class="sub">The higher the value the <b>worse</b> the country performs</span> -->
-		<span class="def">Average employment gap as a percentage of the benchmark group (prime-age male workers) (2015)</span>
+		<div class="metadata" tooltip="Average employment gap as a percentage of the benchmark group (prime-age male workers) (2015)">Employment gap for disadvantaged groups
 		</div>
 		<span id="EmplGap"></span>
 	</div>
@@ -339,7 +341,7 @@ height:15px;
 <script type="text/javascript">
 
 var overallwidth=document.getElementById("page").offsetWidth;
-var height=50
+var height=45
 var width = overallwidth;
 var sideMargin=width/5;
 var marginLeft=sideMargin;
@@ -435,7 +437,15 @@ test="#"+topicSelected;
 		    	if(d.value!=="")
 		    		return x(parseFloat(d.value));})
 		    .attr("cy",height/2)
-			.attr("r", 8)
+			.attr("r", function(d){
+				if(d.ISO==countrySel)
+					return 9;
+
+				else if (d.Country=="OECD")
+					return 6;
+				else
+					return 8;
+			})
 			.style("fill",function(d){
 				if(d.ISO==countrySel)
 					return "#5E0084"
@@ -457,7 +467,7 @@ test="#"+topicSelected;
 				    		return x(parseFloat(d.value));})
 			.attr("dy",function(d){
 				if(d.ISO==countrySel)
-					return height/2+17;
+					return height/2+18;
 				else
 					return height/2-10;
 			})
@@ -469,7 +479,8 @@ test="#"+topicSelected;
 	            else if  (d.topic=="LabMarkSec")
 	              return  d.Country+ " (" + format(d.value) + " "+")";
 	            else
-	              return  d.Country+ " (" + format(d.value) + " %"+")";return d.Country;})
+	              return  d.Country+ " (" + format(d.value) + " %"+")";
+	      })
 
 
 
@@ -557,12 +568,15 @@ test="#"+topicSelected;
 
 				
 				d3.select(this)
-				.attr("r", function(d){
-					if (d.ISO==sel.options[sel.selectedIndex].value)
-							return 7
-					else
-							return 8;
-				})
+				.attr("r",  function(d){
+				if(d.ISO==sel.options[sel.selectedIndex].value)
+					return 9;
+
+				else if (d.Country=="OECD")
+					return 6;
+				else
+					return 8;
+			})
 	            
 	            //Hide the tooltip
 				d3.select("#countryTooltipSetUP").classed("hidden", true);	            
