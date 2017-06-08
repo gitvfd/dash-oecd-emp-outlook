@@ -776,18 +776,18 @@ function createRadial(topicSelected){
 			    else
 			      tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-right.svg")
 
-        //Find the largest title
+        		//Find the largest title
         		var maxSize = Math.max(document.getElementById("tooltipDim").getComputedTextLength(), document.getElementById("tooltipValue").getComputedTextLength(),document.getElementById("tooltipCountry").getComputedTextLength(),document.getElementById("tooltipEvo").getComputedTextLength());
 
 
         		tooltipBackground
          			.transition().duration(100)
-            		.attr("x", -0.5 * maxSize*1.2)
-            		.attr("width", maxSize*1.2)
+            		.attr("x", -0.5 * maxSize*1.5)
+            		.attr("width", maxSize*1.5)
 
  				tooltipWrapper
 			                .transition().duration(200)
-			                .attr("transform", "translate(" + (width/3) + "," + (3/2*width/3)  + ")")
+			                .attr("transform", "translate(" + (4*width/10) + "," + (3/2*width/3)  + ")")
 			                .style("opacity", 1);
 		       
 		        
@@ -894,12 +894,12 @@ function createRadial(topicSelected){
 
         		tooltipBackground
          			.transition().duration(100)
-            		.attr("x", -0.5 * maxSize*1.2)
-            		.attr("width", maxSize*1.2)
+            		.attr("x", -0.5 * maxSize*1.5)
+            		.attr("width", maxSize*1.5)
 
  				tooltipWrapper
 			                .transition().duration(200)
-			                .attr("transform", "translate(" + (width/3) + "," + (3/2*width/3)  + ")")
+			                .attr("transform", "translate(" + (4*width/10) + "," + (3/2*width/3)  + ")")
 			                .style("opacity", 1);
 		       
 		        
