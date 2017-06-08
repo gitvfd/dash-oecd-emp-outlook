@@ -9,6 +9,7 @@ body{
 	margin-left:5%;
 }
 
+
 #quantity{
   border-top: 3px solid #00B7B5; 
 }
@@ -34,8 +35,8 @@ body{
 	font-size: 24px;
 	color:#8EA4B1;
 
-	margin-top:7px;
-	margin-bottom:4px;
+	margin-top:2px;
+	margin-bottom:2px;
 }
 
 .Explanation{
@@ -205,6 +206,10 @@ height:15px;
 
 </style>
 <body id="page">
+<div class="title">
+	Where do countries stand on Employment?
+</div>
+<Br/>
 <div id="toolbar">
 <div class="button " id="table">Dashboard </div>
 <div class="button  " id="radial">Infographic </div>
@@ -474,9 +479,9 @@ test="#"+topicSelected;
 			.style("text-anchor","middle")
 			.text(function(d){
 
-	            if (d.topic=="EarnQual")
+	            if (topicSelected=="EarnQual")
 	              return  d.Country+ " (" + format(d.value) + " USD"+")";
-	            else if  (d.topic=="LabMarkSec")
+	            else if  (topicSelected=="LabMarkSec")
 	              return  d.Country+ " (" + format(d.value) + " "+")";
 	            else
 	              return  d.Country+ " (" + format(d.value) + " %"+")";
@@ -524,9 +529,9 @@ test="#"+topicSelected;
 
 		     d3.select("#valueTooltip")
 		        .text(function(){
-	            if (d.topic=="EarnQual")
+	            if (topicSelected=="EarnQual")
 	              return format(d.value) + " USD";
-	            else if  (d.topic=="LabMarkSec")
+	            else if  (topicSelected=="LabMarkSec")
 	              return format(d.value) + " ";
 	            else
 	              return format(d.value) + " %";
