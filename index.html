@@ -178,8 +178,14 @@ stroke-width:1px;
 	var barHeight = window.innerHeight/60;
 	var format = d3.format(",.3f");
   var margin = 10,
-    overallwidth = document.getElementById("viz").offsetWidth,
-    height=  window.innerHeight;
+  overallwidth,height;
+  if (Modernizr.framed){
+    overallwidth = window.frameElement.offsetWidth;
+    height=  window.frameElement.offsetHeight;
+  }else {
+      overallwidth = document.getElementById("viz").offsetWidth,
+      height=  window.innerHeight;
+    }
     
   var width=overallwidth/numberIndicators;
 
@@ -316,64 +322,60 @@ stroke-width:1px;
 	    			return d.code +" "+"headingTitleBox";
 	    		})
 	    		.attr("width",width-2*margin)
-	    		.attr("height",window.innerHeight/7.5)
+	    		.attr("height","5.5em")
 	    		.attr("fill",function(d){
 	    			return colorScale(d.Sector)
 	    		})
 	    		.attr("opacity",0.65);
 
 
-        //implement switch for compatibility with IE  which doesn't accept ForeignObject:  https://developer.mozilla.org/fr/docs/Web/SVG/Element/foreignObject
-        /**var newSwitches = headers.append("switch");
-
-				foreignObjects = newSwitches
-            .append('foreignObject')
-	    			.attr("class","headingTitle")
-            //.attr('x', 0)
-            //.attr('y', 0)
-            .attr('width', width-2*margin)
-            .attr('height', window.innerHeight/10)
-            .attr("requiredFeatures","http://www.w3.org/1999/xhtml")
-            .append("xhtml:body")
-            .attr("xmlns","http://www.w3.org/1999/xhtml")
-            .append("p")
-            .attr("class","headingTitle")
-            .text(function(d,i) { return d.Indicator; });//'<div style=\"width:'+ width-2*margin+'\">'+d+'</div>');
-
-
-
-        // If it fails, show our other labels instead.
-        newSwitches.append("text")
-            .attr("class","text-headingTitle")
-            .attr('x', 5)
-            .attr('y', 20)
-            //.attr('width', width-2*margin)
-            //.attr('height', window.innerHeight/10)
-            .text(function(d) { return (d.Indicator)});
-            //.text(function(d) { return (d.Indicator).substring(0, 18)});//substring as text doesn't go to next line.**/
         var Titles;
+        
         if (!Modernizr.svgforeignobject) {
           console.log("test")
-          Titles = headers.append('tspan')
+          Titles = headers.append("text")
             .attr("class","headingTitle")
+
+            .append('tspan')
             .attr('x', 0)
-            .attr('y', 0)
+            .attr('y', "1em")
             .attr('width', width-2*margin)
             .attr('height', window.innerHeight/10)
-            //.attr("requiredFeatures","http://www.w3.org/1999/xhtml")
-            //.append("xhtml:body")
-            //.attr("xmlns","http://www.w3.org/1999/xhtml")
-            //.append("p")
-            .attr("class","headingTitle")
-            .text(function(d,i) { return d.Indicator; });        
+            .text(function(d,i) { return d.Indicator.split(" ")[0];})
+            .append('tspan')
+            .attr('x', 0)
+            .attr('y', "2em")
+            .attr('width', width-2*margin)
+            .attr('height', window.innerHeight/10)
+            .text(function(d,i) { return d.Indicator.split(" ")[1];})
+            .append('tspan')
+            .attr('x', 0)
+            .attr('y', "3em")
+            .attr('width', width-2*margin)
+            .attr('height', window.innerHeight/10)
+            .text(function(d,i) { return d.Indicator.split(" ")[2];})
+            .append('tspan')
+            .attr('x', 0)
+            .attr('y', "4em")
+            .attr('width', width-2*margin)
+            .attr('height', window.innerHeight/10)
+            .text(function(d,i) { return d.Indicator.split(" ")[3];})
+            .append('tspan')
+            .attr('x', 0)
+            .attr('y', "5em")
+            .attr('width', width-2*margin)
+            .attr('height', window.innerHeight/10)
+            .text(function(d,i) { return d.Indicator.split(" ")[4];});        
+
+
+
         }else{
-          console.log("test1")
           Titles = headers.append('foreignObject')
             .attr("class","headingTitle")
             //.attr('x', 0)
             //.attr('y', 0)
             .attr('width', width-2*margin)
-            .attr('height', window.innerHeight/10)
+            .attr('height', "4em")
             //.attr("requiredFeatures","http://www.w3.org/1999/xhtml")
             .append("xhtml:body")
             //.attr("xmlns","http://www.w3.org/1999/xhtml")
@@ -384,7 +386,7 @@ stroke-width:1px;
 
         headers.append("image")
             .attr('x', 0.98*(width-2*margin)-width/5)
-            .attr('y', window.innerHeight/7.5-1.35*width/5)
+            .attr('y', "4em")
             .attr("xlink:href",function(d){
               if(d.code!="cou")
                 return "img/chevron-small-down.svg";})
