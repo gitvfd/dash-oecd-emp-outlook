@@ -8,7 +8,14 @@ body{
   margin-right:5%;
 }
 
+.title{
+  font:TheSerif;
+  font-size: 24px;
+  color:#8EA4B1;
 
+  margin-top:2px;
+  margin-bottom:2px;
+}
 
 #intro{
 clear: both; float: left; display: block; position: relative;
@@ -19,6 +26,14 @@ clear: both; float: left; display: block; position: relative;
   margin-top:5px;
   margin-bottom:10px;
     display: inline-block;
+}
+
+#source{
+
+  font:TheSerif;
+  font-style: normal;
+  font-size: 12px;
+  color:#575757;
 }
 /* --- Tooltip --- */
 
@@ -152,6 +167,10 @@ stroke-width:1px;
 </Br>-->
 
 <body id="page">
+<div class="title">
+  Scoreboard of labour market performance 
+</div>
+<Br/>
 <div id="toolbar">
 <div class="button active" id="table">Dashboard </div>
 <div class="button  " id="radial">Infographic </div>
@@ -163,6 +182,8 @@ stroke-width:1px;
 <div id="legend"></div>
 <div id="title"></div>
 <div id="viz"></div>
+<Br/>
+<div id="source">For further details on definitions and sources, refer to Chapter 1 of the <a href="http://dx.doi.org/10.1787/empl_outlook-2017-en">OECD Employment Outlook 2017</a>.</div>
 </body>
 <script src="libs/d3.v4.min.js"></script>
 <script src="libs/modernizr.js"></script>
@@ -175,17 +196,14 @@ stroke-width:1px;
 <script>
 
 	var numberIndicators= 10; // 10 indicators + 1 dimensions for names
-	var barHeight = window.innerHeight/60;
-	var format = d3.format(",.3f");
+	var barHeight = window.innerHeight/75;
+	var format = d3.format(",.1f");
   var margin = 10,
   overallwidth,height;
-  if (Modernizr.framed){
-    overallwidth = window.frameElement.offsetWidth;
-    height=  window.frameElement.offsetHeight;
-  }else {
-      overallwidth = document.getElementById("viz").offsetWidth,
-      height=  window.innerHeight;
-    }
+  overallwidth = document.getElementById("viz").offsetWidth,
+  height=  window.innerHeight;
+  var limit= 35*window.innerHeight/75; // max height after which part of the tooltip is hidden
+
     
   var width=overallwidth/numberIndicators;
 
@@ -194,7 +212,6 @@ stroke-width:1px;
         .attr("class", "tooltipTitle")
         .style("display", "none");
 
-  var format= d3.format(",.2f");
 
 	/////////////////////////////////////
 	/////////////////////////////////////
