@@ -291,9 +291,9 @@
         var yearCode = "Y"+indicator;
         yearToolTip=d[yearCode];
 
-				d3.selectAll(countryName)
+				/**d3.selectAll(countryName)
 				.style('stroke',"#000000")
-				.style('stroke-width',"4px");
+				.style('stroke-width',"4px");**/
         
        d3.selectAll(countryTitle)
         .style("font-weight","bold")
@@ -445,8 +445,8 @@
         var indicator = d3.select(this).attr("class")
 				indicator=indicator.split(' ')[0];
 
-				d3.selectAll(countryName)
-      				.style("stroke","none");
+				/**d3.selectAll(countryName)
+      				.style("stroke","none");**/
 
         d3.selectAll(countryTitle)
               .style("font-weight","normal")
