@@ -349,11 +349,11 @@
         tooltipBackground
             .transition().duration(100)
             .attr("x", -0.5 * maxSize*1.2)
-            .attr("width", maxSize*1.2)
+            .attr("width", maxSize*1.2);
 
-        if(d3.select(this).attr("x") -maxSize < 0) {
+        if(d3.select(this).attr("x") < 3*width) {
 
-        	var xPosition=width/3;
+        	var xPosition=2*width;
         	
         	if (d3.select(this).attr("y") < 25) {
 
@@ -379,7 +379,7 @@
         	}
 
         } else if (d3.select(this).attr("x") +maxSize > overallwidth) {
-        	var xPosition= 2*width/3;
+        	var xPosition= d3.select(this).attr("x") -maxSize/2;
         	if(d3.select(this).attr("y") < 25){
         		
 	            tooltipWrapper
