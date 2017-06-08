@@ -187,17 +187,12 @@ stroke-width:1px;
 <script>
 
 	var numberIndicators= 10; // 10 indicators + 1 dimensions for names
-	var barHeight = window.innerHeight/60;
+	var barHeight = window.innerHeight/75;
 	var format = d3.format(",.3f");
   var margin = 10,
   overallwidth,height;
-  if (Modernizr.framed){
-      overallwidth = document.getElementById("viz").offsetWidth,
-      height=  window.innerHeight;
-  }else {
-      overallwidth = document.getElementById("viz").offsetWidth,
-      height=  window.innerHeight;
-    }
+  overallwidth = document.getElementById("viz").offsetWidth,
+  height=  window.innerHeight;
     
   var width=overallwidth/numberIndicators;
 
