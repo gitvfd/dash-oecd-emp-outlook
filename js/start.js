@@ -351,7 +351,7 @@
             .attr("x", -0.5 * maxSize*1.2)
             .attr("width", maxSize*1.2)
 
-        if(d3.select(this).attr("x") -maxSize/2 < 0) {
+        if(d3.select(this).attr("x") -maxSize < 0) {
 
         	var xPosition=width/3;
         	
@@ -378,8 +378,8 @@
 
         	}
 
-        } else if (d3.select(this).attr("x") +maxSize/2 > overallwidth) {
-        	var xPosition= d3.select(this).attr("x") -maxSize/2;
+        } else if (d3.select(this).attr("x") +maxSize > overallwidth) {
+        	var xPosition= 2*width/3;
         	if(d3.select(this).attr("y") < 25){
         		
 	            tooltipWrapper
