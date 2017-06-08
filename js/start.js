@@ -268,8 +268,6 @@
         .attr("width", "20")
         .attr("height", "20");
 
-	     var limit= height - 200; // max height after which part of the tooltip is hidden
-
 	    ///////////////////////////////////////////////////////////////////////////
 	    ////////////////////////////// End Tooltip ////////////////////////////////
 	    ///////////////////////////////////////////////////////////////////////////
@@ -326,10 +324,10 @@
         tooltipValue.text(function(){
             if (indicator=="EarnQual")
               return format(d[indicator]) + " USD";
-            else if  (indicator=="LabMarkSec")
-              return format(d[indicator]) + " ";
+            else if  (indicator=="EmplGap")
+              return format(d[indicator]) + " pp";
             else
-              return format(d[indicator]) + " %";
+              return format(d[indicator]) + "%";
         });
         
         var evoCode = "evo"+indicator;

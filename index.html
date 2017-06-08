@@ -27,6 +27,14 @@ clear: both; float: left; display: block; position: relative;
   margin-bottom:10px;
     display: inline-block;
 }
+
+#source{
+
+  font:TheSerif;
+  font-style: normal;
+  font-size: 12px;
+  color:#575757;
+}
 /* --- Tooltip --- */
 
 .tooltip-wrapper {
@@ -160,7 +168,7 @@ stroke-width:1px;
 
 <body id="page">
 <div class="title">
-  Where do countries stand on Employment?
+  Scoreboard of labour market performance 
 </div>
 <Br/>
 <div id="toolbar">
@@ -174,7 +182,8 @@ stroke-width:1px;
 <div id="legend"></div>
 <div id="title"></div>
 <div id="viz"></div>
-
+<Br/>
+<div id="source">For further details on definitions and sources, refer to Chapter 1 of the <a href="http://dx.doi.org/10.1787/empl_outlook-2017-en">OECD Employment Outlook 2017</a>.</div>
 </body>
 <script src="libs/d3.v4.min.js"></script>
 <script src="libs/modernizr.js"></script>
@@ -188,11 +197,13 @@ stroke-width:1px;
 
 	var numberIndicators= 10; // 10 indicators + 1 dimensions for names
 	var barHeight = window.innerHeight/75;
-	var format = d3.format(",.3f");
+	var format = d3.format(",.1f");
   var margin = 10,
   overallwidth,height;
   overallwidth = document.getElementById("viz").offsetWidth,
   height=  window.innerHeight;
+  var limit= 35*window.innerHeight/75; // max height after which part of the tooltip is hidden
+
     
   var width=overallwidth/numberIndicators;
 
@@ -201,7 +212,6 @@ stroke-width:1px;
         .attr("class", "tooltipTitle")
         .style("display", "none");
 
-  var format= d3.format(",.2f");
 
 	/////////////////////////////////////
 	/////////////////////////////////////

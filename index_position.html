@@ -2,9 +2,7 @@
 <meta charset="utf-8">
 <style type="text/css">
 body{
-	background:#EDF8F6;
-
-  			
+	background:#EDF8F6;  			
 	margin-right: 5%;
 	margin-left:5%;
 }
@@ -89,6 +87,13 @@ margin-top: :3px;
 
 }
 
+#source{
+clear: both; float: left; display: block; position: relative;  
+  font:TheSerif;
+  font-style: normal;
+  font-size: 12px;
+  color:#575757;
+}
 
 [tooltip]:before {
     /* needed - do not touch */
@@ -187,7 +192,7 @@ height:15px;
     display: inline-block;
 }
 .button{
- min-width: 130px;
+  min-width: 130px;
   padding: 4px 5px;
   cursor: pointer;
   text-align: center;
@@ -207,7 +212,7 @@ height:15px;
 </style>
 <body id="page">
 <div class="title">
-	Where do countries stand on Employment?
+	Scoreboard of labour market performance 
 </div>
 <Br/>
 <div id="toolbar">
@@ -330,7 +335,8 @@ height:15px;
 		<span id="EmplGap"></span>
 	</div>
 </div>
-
+<Br/>
+<div id="source">For further details on definitions and sources, refer to Chapter 1 of the <a href="http://dx.doi.org/10.1787/empl_outlook-2017-en">OECD Employment Outlook 2017</a>.</div>
 <div id="countryTooltipSetUP" class="hidden">
               <p><span id="countryTooltip">All</span></p><Br/>
 
@@ -481,10 +487,10 @@ test="#"+topicSelected;
 
 	            if (topicSelected=="EarnQual")
 	              return  d.Country+ " (" + format(d.value) + " USD"+")";
-	            else if  (topicSelected=="LabMarkSec")
-	              return  d.Country+ " (" + format(d.value) + " "+")";
+	            else if  (topicSelected=="EmplGap")
+	              return  d.Country+ " (" + format(d.value) + " pp"+")";
 	            else
-	              return  d.Country+ " (" + format(d.value) + " %"+")";
+	              return  d.Country+ " (" + format(d.value) + "%"+")";
 	      })
 
 
@@ -531,10 +537,10 @@ test="#"+topicSelected;
 		        .text(function(){
 	            if (topicSelected=="EarnQual")
 	              return format(d.value) + " USD";
-	            else if  (topicSelected=="LabMarkSec")
-	              return format(d.value) + " ";
+	            else if  (topicSelected=="EmplGap")
+	              return format(d.value) + " pp";
 	            else
-	              return format(d.value) + " %";
+	              return format(d.value) + "%";
         	});
 
 		     d3.select("#evoTooltip")
