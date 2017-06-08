@@ -353,7 +353,7 @@
 
         if(d3.select(this).attr("x") -maxSize/2 < 0) {
 
-        	var xPosition=maxSize;
+        	var xPosition=2*maxSize;
         	
         	if (d3.select(this).attr("y") < 25) {
 
