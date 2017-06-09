@@ -3,18 +3,18 @@
 <style type="text/css">
 
 body{
-  /**background:#EDF8F6;**/
+  background:#EDF8F6;  
   margin-left: 5%;
   margin-right:5%;
 }
 
 .title{
   font:TheSerif;
-  font-size: 24px;
+  font-size: 20px;
   color:#8EA4B1;
 
   margin-top:2px;
-  margin-bottom:2px;
+  margin-bottom:1px;
 }
 
 #intro{
@@ -111,6 +111,7 @@ stroke-width:1px;
 	/**font-size:12px;**/
 	font-size:1vw;
 	color:#0B1E2D;
+  background:none;
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
 }
@@ -349,7 +350,7 @@ stroke-width:1px;
         var Titles;
         
         if (!Modernizr.svgforeignobject) {
-          console.log("test")
+
           Titles = headers.append("text")
             .attr("class","headingTitle")
 
