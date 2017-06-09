@@ -314,7 +314,7 @@
 	            	if (indicator=="LowIncome")
 	            		return "Low income rate (" + yearToolTip +")" ;
 	            	if (indicator=="GenderIneq")
-	            		return "Gender income inequality (" + yearToolTip +")" ;
+	            		return "Gender labour income gap (" + yearToolTip +")" ;
 	            	if (indicator=="EmplGap")
 	            		return "Employment gap for disadvantaged groups (" + yearToolTip +")" ;
 
@@ -339,8 +339,10 @@
       tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-down.svg")
     else if (d[evoCode]=="up")
       tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-up.svg")
-    else
+    else if (d[evoCode]=="stable")
       tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-right.svg")
+    else
+      tooltipEvoArrow.attr("xlink:href", "img/dots-three-horizontal.svg")
 
 
         //Find the largest title
