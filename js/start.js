@@ -325,7 +325,7 @@
             if (indicator=="EarnQual")
               return format(d[indicator]) + " USD";
             else if  (indicator=="EmplGap")
-              return format(d[indicator]) + " pp";
+              return format(d[indicator]) + "%";
             else
               return format(d[indicator]) + "%";
         });
