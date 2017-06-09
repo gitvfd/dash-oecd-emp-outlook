@@ -222,9 +222,9 @@ margin-top: :5px;
 </div>
 <Br/>
 <div id="toolbar">
+<div class="button " id="comparison">Country position </div>
 <div class="button " id="table">Dashboard </div>
 <div class="button  active" id="radial">Infographic </div>
-<div class="button " id="comparison">Country position </div>
 </div>
 <Br/>
 <div class="Explanation">
@@ -372,6 +372,7 @@ The lighter the shading for a country the worse it performs for the given indica
 
 <Br/>
 <div id="source">For further details on definitions and sources, refer to Chapter 1 of the <a href="http://dx.doi.org/10.1787/empl_outlook-2017-en">OECD Employment Outlook 2017</a>.</div>
+<div id="source">Download the data <a href="http://www.oecd.org/employment/emp/Labour-market-performance-scoreboard.xlsx">here</a>.</div>
 </body>
 
 <script src="libs/d3.v4.min.js"></script>
@@ -768,14 +769,16 @@ function createRadial(topicSelected){
         		
 
         		tooltipEvo.text("Evolution since 2006" );//+ d[evoCode] );
-    
+  
 
 			    if(d.evoData=="down")
 			      tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-down.svg")
 			    else if (d.evoData=="up")
 			      tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-up.svg")
-			    else
-			      tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-right.svg")
+    			else if (d[evoCode]=="stable")
+     			  tooltipEvoArrow.attr("xlink:href", "img/arrow-with-circle-right.svg")
+    			else
+      			  tooltipEvoArrow.attr("xlink:href", "img/dots-three-horizontal.svg")  
 
         		//Find the largest title
         		var maxSize = Math.max(document.getElementById("tooltipDim").getComputedTextLength(), document.getElementById("tooltipValue").getComputedTextLength(),document.getElementById("tooltipCountry").getComputedTextLength(),document.getElementById("tooltipEvo").getComputedTextLength());
@@ -971,11 +974,11 @@ function setupButtons() {
 		if (buttonId== "radial")
 		window.open("index_radial.html", "_self")
 		else if (buttonId== "table")
-		window.open("index.html", "_self")
+		window.open("index_table.html", "_self")
 
 
 		else if (buttonId== "comparison")
-		window.open("index_position.html", "_self")
+		window.open("index.html", "_self")
         // Toggle the bubble chart based on
         // the currently clicked button.
         //draw(buttonId);
