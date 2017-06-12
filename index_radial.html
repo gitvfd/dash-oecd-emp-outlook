@@ -231,15 +231,11 @@ margin-top: :5px;
 <div class="button  active" id="radial">Infographic </div>
 </div>
 <Br/>
-<div class="Explanation">
-The lighter the shading for a country the worse it performs for the given indicators.
-</div>
-<Br/>
 <div class="selector">Highlight a country: &nbsp;
 <select id="dropDownButton" onchange="highlightCountry(this.value)";>
-  <option value="" selected="selected">-</option>
+  <option value="">-</option>
 	 <option value="ARG">Argentina</option>
-	 <option value="AUS" >Australia</option>
+	 <option value="AUS" selected="selected" >Australia</option>
 	 <option value="AUT" >Austria</option>
 	 <option value="BEL" >Belgium</option>
 	 <option value="BRA" >Brazil</option>
@@ -286,8 +282,12 @@ The lighter the shading for a country the worse it performs for the given indica
 	 <option value="GBR" >United Kingdom</option>
 	 <option value="USA" >United States</option>
 </select>
-<Br/>
 </div>
+<Br/>
+<div class="Explanation">
+The lighter the shading for a country the worse it performs for the given indicators.
+</div>
+<Br/>
 <div class="sector" >
 	Quantity
 </div>
@@ -930,6 +930,10 @@ function createRadial(topicSelected){
 				highlightCountry(d.ISO)
 			});
 
+		var e = document.getElementById("dropDownButton");
+		var selectedCou = e.options[e.selectedIndex].value;
+
+		(highlightCountry(selectedCou),10000);
 	});
 };
 
