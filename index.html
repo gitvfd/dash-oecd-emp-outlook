@@ -73,7 +73,14 @@ clear: both; float: left; display: block; position: relative;
 	color:#575757;
 }
 
-
+.TitleSection{
+	clear: both; 
+    display: block;
+	font:TheSerif;
+	font-style: normal;
+	font-size: 14px;
+	color:#575757;
+}
 span{
 	display: block;
 }
@@ -273,9 +280,11 @@ height:15px;
 </select>
 </div>
 </Br>
-<div class="sub"> Countries on the left hand side are <b>bottom performers</b> for the indicators while countries on the right hand side are <b>top performers</b>.
+<!--<div class="sub"> Countries on the left hand side are <b>bottom performers</b> for the indicators while countries on the right hand side are <b>top performers</b>.-->
 </div>	
 </Br>
+
+<div id="Performers"></div>
 <div class="sector" id="quantity" >
 	Quantity
 </div>
@@ -383,6 +392,25 @@ function pickSector(topicSelected){
 var x = d3.scaleLinear()
 	//.domain([0,100])
     .rangeRound([marginLeft, width-marginRight]);
+
+var legend = d3.select("#Performers")
+	    	.append("svg")
+	    	.attr("width", width)
+	    	.attr("height",height/2);
+
+legend.append("text")
+.attr("x",width-marginRight)
+.attr("y",height/2.5)
+.attr("class","TitleSection")
+.attr("text-anchor","middle")
+.text("Top Performer")
+
+legend.append("text")
+.attr("x",marginLeft)
+.attr("y",height/2.5)
+.attr("class","TitleSection")
+.attr("text-anchor","middle")
+.text("Bottom Performer");
 
 function createComparison(topicSelected,countrySel){
 test="#"+topicSelected;
